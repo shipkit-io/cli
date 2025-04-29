@@ -1,0 +1,53 @@
+{
+	"name": "shipkit-cli",
+	"version": "0.1.0",
+	"description": "CLI tool to deploy and manage shipkit.io instances",
+	"main": "dist/index.js",
+	"bin": {
+		"shipkit": "bin/shipkit.js"
+	},
+	"scripts": {
+		"build": "tsc",
+		"dev": "tsc --watch",
+		"start": "node dist/index.js",
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"prepublishOnly": "npm run build"
+	},
+	"files": [
+		"dist",
+		"bin"
+	],
+	"keywords": [
+		"cli",
+		"shipkit",
+		"bones.sh",
+		"devops",
+		"vercel",
+		"deploy"
+	],
+	"author": "Lacy Morrow <me@lacymorrow.com> (http://lacymorrow.com/)",
+	"license": "MIT",
+	"dependencies": {
+		"@clack/prompts": "^0.7.0",
+		"axios": "^1.6.7",
+		"commander": "^12.0.0",
+		"fs-extra": "^11.2.0",
+		"open": "^10.1.1"
+	},
+	"devDependencies": {
+		"@types/fs-extra": "^11.0.4",
+		"@types/node": "^20.17.32",
+		"typescript": "^5.8.3"
+	},
+	"engines": {
+		"node": ">=14.16"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/lacymorrow/shipkit-cli.git"
+	},
+	"bugs": {
+		"url": "https://github.com/lacymorrow/shipkit-cli/issues"
+	},
+	"homepage": "https://github.com/lacymorrow/shipkit-cli#readme"
+}
