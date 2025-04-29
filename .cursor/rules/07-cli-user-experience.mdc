@@ -3,3 +3,63 @@ description:
 globs:
 alwaysApply: false
 ---
+# CLI User Experience
+
+This project uses the [Clack](https://www.clack.cc/) library to create a modern, beautiful command-line interface with excellent user experience.
+
+## Design Principles
+
+The CLI follows these UX design principles:
+
+1. **Clear feedback** - Always inform the user about what's happening
+2. **Progressive disclosure** - Show information when it's relevant
+3. **Minimal input** - Accept command-line arguments but also prompt when needed
+4. **Visual hierarchy** - Use color, spacing, and formatting for readability
+5. **Error handling** - Clear error messages with recovery options
+
+## User Interface Elements
+
+The following UI elements are used throughout the CLI:
+
+### Welcome Banner
+
+A custom ASCII art banner is displayed at startup in [src/index.ts](mdc:src/index.ts):
+
+```
+   _____ _     _       _    _ _      _____ _      _____
+  / ____| |   (_)     | |  (_) |    / ____| |    |_   _|
+ | (___ | |__  _ _ __ | | ___| |_  | |    | |      | |  
+  \\___ \\| '_ \\| | '_ \\| |/ / | __| | |    | |      | |  
+  ____) | | | | | |_) |   <| | |_  | |____| |____ _| |_ 
+ |_____/|_| |_|_| .__/|_|\\_\\_|\\__|  \\_____|______|_____|
+                | |                                      
+                |_|  
+```
+
+### Interactive Elements
+
+- **Spinners** - Show progress during long-running operations
+- **Text inputs** - Collect user input with validation
+- **Confirmations** - Ask for user confirmation before destructive actions
+- **Notes** - Display important information in highlighted boxes
+- **Tables** - Display structured data in the list command
+
+## Command Flow
+
+Each command follows a consistent flow:
+
+1. **Introduction** - Command starts, checking prerequisites
+2. **Information gathering** - Collect required input via arguments or prompts
+3. **Confirmation** - Verify the action if it's destructive or important
+4. **Execution** - Perform the action with progress indicators
+5. **Result** - Display the outcome with clear formatting
+
+## Error Handling
+
+Errors are handled gracefully with:
+
+- Clear error messages explaining what went wrong
+- Suggestions for how to fix the issue
+- Process exit with appropriate code
+
+Examples can be found in the try/catch blocks in each command implementation.

@@ -1,5 +1,34 @@
 ---
-description:
-globs:
+description: 
+globs: 
 alwaysApply: false
 ---
+# ShipKit CLI Project Overview
+
+This project is a command-line tool built to install and manage shipkit.io and bones.sh instances. It uses [Clack](mdc:https:/www.clack.cc) for beautiful CLI prompts and interactions.
+
+## Project Structure
+
+- [package.json](mdc:package.json) - Main project configuration
+- [tsconfig.json](mdc:tsconfig.json) - TypeScript configuration
+- [src/](mdc:src) - Source code directory
+  - [src/index.ts](mdc:src/index.ts) - Main entry point for the CLI
+  - [src/types.ts](mdc:src/types.ts) - TypeScript type definitions
+  - [src/utils.ts](mdc:src/utils.ts) - Utility functions
+  - [src/commands/](mdc:src/commands) - Command implementations
+- [bin/shipkit.js](mdc:bin/shipkit.js) - Executable CLI entry point
+
+## Key Features
+
+1. Install shipkit.io or bones.sh instances
+2. List all managed instances
+3. Remove instances
+4. Update instances
+
+## Build Process
+
+The TypeScript source code is compiled to JavaScript in the `dist` directory using the TypeScript compiler. The compiled code is then executed via the bin/shipkit.js entry point.
+
+## Configuration Storage
+
+The CLI stores configuration data in the user's home directory at `~/.shipkit-cli/config.json`.

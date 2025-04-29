@@ -3,3 +3,37 @@ description:
 globs:
 alwaysApply: false
 ---
+# CLI Architecture
+
+This project uses a combination of [Commander.js](https://github.com/tj/commander.js/) for command-line argument parsing and [Clack](https://www.clack.cc/) for interactive prompts and beautiful CLI output.
+
+## Command Structure
+
+The main CLI structure is defined in [src/index.ts](mdc:src/index.ts), which:
+
+1. Creates a Commander program instance
+2. Defines the available commands and their options
+3. Adds command handlers from the [commands](mdc:src/commands) directory
+
+## User Interaction Components
+
+The project uses various Clack components for interactive CLI elements:
+
+- `p.intro()` and `p.outro()` - Display welcome and goodbye messages
+- `p.spinner()` - Show loading spinners for async operations
+- `p.text()` - Prompt for text input
+- `p.confirm()` - Prompt for confirmation (yes/no)
+- `p.note()` - Display highlighted notes
+- `p.cancel()` - Display cancellation messages
+
+## Command Implementation Pattern
+
+Each command follows a similar implementation pattern:
+
+1. Execute user prompts with Clack if required
+2. Validate input
+3. Show progress with spinners
+4. Perform the command operation
+5. Display results or error messages
+
+The CLI is built to be user-friendly with clear prompts, helpful messages, and informative output.

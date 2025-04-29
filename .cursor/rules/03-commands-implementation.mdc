@@ -3,3 +3,47 @@ description:
 globs:
 alwaysApply: false
 ---
+# Commands Implementation
+
+The CLI provides four main commands, each implemented in a separate file in the [src/commands](mdc:src/commands) directory:
+
+## Install Command
+
+[src/commands/install.ts](mdc:src/commands/install.ts) handles installation of new shipkit.io or bones.sh instances:
+
+- Validates the instance type (shipkit or bones)
+- Prompts for name and installation directory if not provided
+- Clones the appropriate Git repository
+- Installs dependencies if needed
+- Registers the instance in the configuration file
+
+## List Command
+
+[src/commands/list.ts](mdc:src/commands/list.ts) lists all managed instances:
+
+- Retrieves all instances from the configuration
+- Verifies if each instance directory still exists
+- Displays a table of verified instances
+- Shows warnings for instances with missing directories
+
+## Remove Command
+
+[src/commands/remove.ts](mdc:src/commands/remove.ts) removes instances:
+
+- Finds the instance by name
+- Asks for confirmation before removal
+- Optionally deletes the instance files
+- Removes the instance from the configuration
+
+## Update Command
+
+[src/commands/update.ts](mdc:src/commands/update.ts) updates instances:
+
+- Finds the instance by name
+- Verifies the instance directory exists and is a Git repository
+- Stashes any local changes
+- Pulls the latest changes from Git
+- Updates dependencies if needed
+- Updates the instance metadata in the configuration
+
+Each command function is exported and attached to the Commander program in [src/index.ts](mdc:src/index.ts).

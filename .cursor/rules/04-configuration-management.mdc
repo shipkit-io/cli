@@ -3,3 +3,58 @@ description:
 globs:
 alwaysApply: false
 ---
+# Configuration Management
+
+The CLI uses a simple JSON-based configuration system to track all managed instances. The configuration functionality is implemented in [src/utils.ts](mdc:src/utils.ts).
+
+## Configuration File
+
+The configuration file is stored in the user's home directory at `~/.shipkit-cli/config.json` and has the following structure:
+
+```json
+{
+  "instances": [
+    {
+      "name": "instance-name",
+      "type": "shipkit|bones",
+      "path": "/absolute/path/to/instance",
+      "version": "0.1.0",
+      "installedAt": "ISO-string-date",
+      "updatedAt": "ISO-string-date"
+    }
+  ],
+  "lastUpdated": "ISO-string-date"
+}
+```
+
+## Configuration Functions
+
+The following utility functions manage the configuration:
+
+- `getConfig()` - Retrieves the configuration, creates default if not exists
+- `saveConfig()` - Saves changes to the configuration file
+- `addInstance()` - Adds a new instance to the configuration
+- `removeInstance()` - Removes an instance from the configuration
+- `findInstance()` - Finds an instance by name
+- `getAllInstances()` - Gets all registered instances
+- `updateInstance()` - Updates an instance's information
+
+## Instance Types
+
+Instance types are defined as an enum in [src/types.ts](mdc:src/types.ts):
+
+```typescript
+export enum InstanceType {
+  SHIPKIT = 'shipkit',
+  BONES = 'bones',
+}
+```
+
+## Type Definitions
+
+TypeScript interfaces for configuration data structures are defined in [src/types.ts](mdc:src/types.ts), including:
+
+- `Instance` - Represents a managed instance
+- `ShipkitConfig` - Overall configuration structure
+- `GitOptions` - Options for Git operations
+- `InstallOptions` - Options for installation

@@ -3,3 +3,64 @@ description:
 globs:
 alwaysApply: false
 ---
+# Git Integration
+
+The CLI integrates with Git for cloning repositories and updating instances. Git functionality is implemented in [src/utils.ts](mdc:src/utils.ts).
+
+## Repository Configuration
+
+Repository URLs for each instance type are defined in [src/commands/install.ts](mdc:src/commands/install.ts):
+
+```typescript
+const REPOS = {
+  [InstanceType.SHIPKIT]: 'https://github.com/shipkit/shipkit.git',
+  [InstanceType.BONES]: 'https://github.com/bones-sh/bones.sh.git',
+};
+```
+
+## Git Operations
+
+The CLI performs the following Git operations:
+
+### Cloning Repositories
+
+The `cloneRepository()` function in [src/utils.ts](mdc:src/utils.ts) handles cloning repositories:
+
+- Supports HTTPS repositories
+- Handles authentication with username/token if provided
+- Clones a specific branch (defaults to 'main')
+- Validates the target directory
+
+### Updating Repositories
+
+The update command in [src/commands/update.ts](mdc:src/commands/update.ts) handles Git updates:
+
+1. Stashes any local changes with `git stash`
+2. Pulls the latest changes with `git pull`
+3. Optionally updates dependencies based on package.json
+
+### Repository Information
+
+The `getRepositoryInfo()` function fetches repository metadata from the GitHub API:
+
+- Extracts owner and repo name from the repository URL
+- Makes an API request to GitHub
+- Returns repository information
+
+## Authentication
+
+The CLI supports authenticated Git operations through the `GitOptions` interface:
+
+```typescript
+export interface GitOptions {
+  repository: string;
+  branch?: string;
+  directory?: string;
+  credentials?: {
+    username: string;
+    token: string;
+  };
+}
+```
+
+This allows for operations on private repositories by providing the appropriate credentials.
